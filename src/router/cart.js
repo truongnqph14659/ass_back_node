@@ -1,7 +1,7 @@
 
 
 const getAll = ()=>{
-
+    
 }
 const updatte =()=>{
     
