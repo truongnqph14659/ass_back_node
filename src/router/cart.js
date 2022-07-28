@@ -1,5 +1,8 @@
 
 
 const getAll = ()=>{
+
+}
+const updatte =()=>{
     
 }
