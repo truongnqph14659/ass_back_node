@@ -9,3 +9,7 @@ const updatte =()=>{
 const created =()=>{
     
 }
+
+const list = ()=>{
+    
+}
