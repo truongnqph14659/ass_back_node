@@ -2,6 +2,7 @@ import 'dotenv/config'
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
+import routerCart from './router/cart'
 const app = express()
 try {
   ;(async () => {
@@ -13,6 +14,7 @@ try {
 }
 app.use(express.json())
 app.use(cors())
+app.use(routerCart)
 app.listen(process.env.PORT, () => {
   console.log(`connected port ${process.env.PORT}`)
 })
