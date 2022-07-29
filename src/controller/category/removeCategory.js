@@ -1,3 +1,4 @@
+import Category from "../../model/category";
 export const remove = async (req, res) => {
     try {
         const id = req.params.id; 

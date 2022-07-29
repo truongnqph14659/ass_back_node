@@ -1,5 +1,9 @@
 import express from 'express';
-import { add, list, read } from '../controllers/category';
+import { list} from '../controller/category/listCategory';
+import { add } from '../controller/category/creatCategory';
+import { read } from '../controller/category/listCategoryId';
+import { update } from '../controller/category/updateCategory';
+import { remove } from '../controller/category/removeCategory';
 
 const router = express.Router();
 
