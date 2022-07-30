@@ -1,4 +1,4 @@
-import Category from '../model/category'
+import Category from '../../model/category'
 // import Product from "../models/product"
 export const read = async (req, res, next) => {
     try{
