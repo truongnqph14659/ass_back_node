@@ -6,7 +6,7 @@ export const remove = async (req, res) => {
         res.json(category);
     } catch (error) {
         res.status(400).json({
-            error: 'Không thêm được sản phẩm'
+            error: 'Không xoa được sản phẩm'
         })
     }
 }
