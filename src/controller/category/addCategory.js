@@ -1,3 +1,4 @@
+import Category from '../../model/category'
 export const add = async (req, res, next) => {
     try {
         const category = await new Category(req.body).save();
