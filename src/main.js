@@ -2,14 +2,11 @@ import 'dotenv/config'
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
-
-import routerProduct from './router/product'
 import product from './router/product'
 import category from './router/category'
 import order from './router/order'
-
+import user from './router/userRouter'
 const app = express()
-app.use('/api', routerProduct)
 try {
   ;(async () => {
     await mongoose.connect(
@@ -25,6 +22,8 @@ app.use(cors())
 app.use('/api/', category)
 app.use('api/', product)
 app.use('/api/',order)
+app.use('/api/', product)
+app.use('/api/', user)
 app.listen(process.env.PORT, () => {
   console.log(`connected port ${process.env.PORT}`)
 })
