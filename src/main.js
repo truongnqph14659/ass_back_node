@@ -6,6 +6,7 @@ import cors from 'cors'
 import routerProduct from './router/product'
 import product from './router/product'
 import category from './router/category'
+import order from './router/order'
 
 const app = express()
 app.use('/api', routerProduct)
@@ -23,6 +24,7 @@ app.use(express.json())
 app.use(cors())
 app.use('/api/', category)
 app.use('api/', product)
+app.use('/api/',order)
 app.listen(process.env.PORT, () => {
   console.log(`connected port ${process.env.PORT}`)
 })
