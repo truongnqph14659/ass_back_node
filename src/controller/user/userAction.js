@@ -31,5 +31,7 @@ export const register = async (req, res) => {
 }
 export const signin = async (req, res) => {
   try {
+    const data = req.body
+    console.log(data)
   } catch (error) {}
 }
