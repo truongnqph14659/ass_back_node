@@ -13,3 +13,16 @@ export const CeatedOrder =async (req,res)=>{
         )
     }
 }
+
+export const List = async (req,res)=>{
+    try {
+        const data = await Order.find();
+        res.json(data)
+    } catch (error) {
+        res.status(400).json(
+            { 
+                message: 'khong them duoc san pham '
+            }
+        )
+    }
+}
