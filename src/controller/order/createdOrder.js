@@ -14,6 +14,7 @@ export const CeatedOrder =async (req,res)=>{
     }
 }
 
+//list order
 export const List = async (req,res)=>{
     try {
         const data = await Order.find();
