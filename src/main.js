@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import product from './router/product'
 import category from './router/category'
+import order from './router/order'
 import user from './router/userRouter'
 const app = express()
 try {
@@ -19,8 +20,18 @@ try {
 app.use(express.json())
 app.use(cors())
 app.use('/api/', category)
+app.use('api/', product)
+app.use('/api/',order)
 app.use('/api/', product)
 app.use('/api/', user)
+// Global error handler
+app.use((err, req, res, next) => {
+  if (err.name === 'UnauthorizedError') {
+    res.status(err.status).send({ message: err.message })
+    return
+  }
+  next()
+})
 app.listen(process.env.PORT, () => {
   console.log(`connected port ${process.env.PORT}`)
 })
