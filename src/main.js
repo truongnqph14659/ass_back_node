@@ -6,6 +6,7 @@ import product from './router/product'
 import category from './router/category'
 import order from './router/order'
 import user from './router/userRouter'
+import orderdetail from './router/orderdetail'
 const app = express()
 try {
   ;(async () => {
@@ -24,6 +25,7 @@ app.use('api/', product)
 app.use('/api/',order)
 app.use('/api/', product)
 app.use('/api/', user)
+app.use('/api/', orderdetail)
 // Global error handler
 app.use((err, req, res, next) => {
   if (err.name === 'UnauthorizedError') {
