@@ -1,7 +1,6 @@
 const { expressjwt: expressJwt } = require('express-jwt')
 import 'dotenv/config'
 // verify jwt
-console.log('co su thay doi verify jwt')
 export const requireSignin = expressJwt({
   algorithms: ['HS256'],
   secret: process.env.KEYADMIN,
