@@ -3,10 +3,11 @@ import jwt from 'jsonwebtoken'
 import 'dotenv/config'
 import { json } from 'express'
 export const register = async (req, res) => {
+  console.log(req.body)
   try {
     const exitEmail = await userModel.findOne({ email: req.body.email })
     if (exitEmail) {
-      return res.status(401).json('email already exit!')
+      return res.status(401).json({ message: 'email already exit!' })
     }
     const userPass = new userModel()
     const passObj = userPass.encryptpass(req.body.password)
@@ -16,13 +17,10 @@ export const register = async (req, res) => {
         salt: passObj.saltHex,
         name: req.body.name,
         email: req.body.email,
+        phone: req.body.phone,
       }).save()
       res.status(200).json({
-        user: {
-          email: User.email,
-          name: User.name,
-          message: 'Đăng ký thành công',
-        },
+        message: 'Đăng ký thành công',
       })
     }
   } catch (error) {
@@ -32,7 +30,7 @@ export const register = async (req, res) => {
     })
   }
 }
-export const signin = async (req, res, next) => {
+export const signin = async (req, res) => {
   try {
     const user = await userModel.findOne({
       email: req.body.email,
@@ -48,26 +46,22 @@ export const signin = async (req, res, next) => {
         message: 'mật khẩu bạn nhập không chính xác!',
       })
     }
+    console.log(user)
     const key = user.role == 1 ? process.env.KEYADMIN : process.env.KEYUSER
     const token = jwt.sign(
       { id: user.id, name: user.name, email: user.email, role: user.role },
       key,
       {
-        expiresIn: '2p',
+        expiresIn: '1h',
       }
     )
-    if (user.role == 0) {
-      return res.status(200).json({
-        token: token,
-        id: user.id,
-        name: user.name,
-        role: user.role,
-      })
-    }
-    user.password = undefined
-    user.token = token
-    req.admin = user
-    next()
+
+    return res.status(200).json({
+      token: token,
+      id: user.id,
+      name: user.name,
+      role: user.role,
+    })
   } catch (error) {
     res.status(404).json({
       message: 'đăng nhập thất bại!',
