@@ -1,12 +1,12 @@
 import Category from '../../model/category'
-// import Product from "../models/product"
+import Product from '../../model/product'
 export const read = async (req, res, next) => {
     try{
         const category = await Category.findOne({_id: req.params.id}).exec();
-        // const products = await Product.find({category: category}).populate('category').select("-category").exec();
+        const products = await Product.find({category: category}).populate('category').select("-category").exec();
         res.json({
             category,
-            // products
+            products
         });   
 } catch  (error){
     res.status(400).json({
