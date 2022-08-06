@@ -1,5 +1,5 @@
 import Category from '../../model/category'
-import Product from '../../model/product'
+import Product from "../../model/product"
 export const read = async (req, res, next) => {
     try{
         const category = await Category.findOne({_id: req.params.id}).exec();
