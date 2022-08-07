@@ -27,13 +27,13 @@ app.use('/api/', product)
 app.use('/api/', user)
 app.use('/api/', orderdetail)
 // Global error handler
-// app.use((err, req, res, next) => {
-//   if (err.name === 'UnauthorizedError') {
-//     res.status(err.status).send({ message: err.message })
-//     return
-//   }
-//   next()
-// })
+app.use((err, req, res, next) => {
+  if (err.name === 'UnauthorizedError') {
+    res.status(err.status).send({ message: err.message })
+    return
+  }
+  next()
+})
 app.listen(process.env.PORT, () => {
   console.log(`connected port ${process.env.PORT}`)
 })
