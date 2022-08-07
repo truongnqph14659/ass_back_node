@@ -9,6 +9,7 @@ import user from './router/userRouter'
 import orderdetail from './router/orderdetail'
 const app = express()
 try {
+  // connect db atlas
   ;(async () => {
     await mongoose.connect(
       `mongodb+srv://${process.env.DATABASE}:${process.env.PASSWORD}@cluster0.wbb0p5v.mongodb.net/nodejs`
