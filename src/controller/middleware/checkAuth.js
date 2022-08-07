@@ -6,7 +6,6 @@ export const requireSignin = expressJwt({
   secret: process.env.KEYADMIN,
   requestProperty: 'auth', // req.auth
 })
-
 export const checkJwt = async (req, res) => {
   if (req.auth.role == req.admin.role) {
     return res.status(200).json({
