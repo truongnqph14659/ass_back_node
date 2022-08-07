@@ -9,6 +9,7 @@ import user from './router/userRouter'
 import orderdetail from './router/orderdetail'
 const app = express()
 try {
+  // connect db atlas
   ;(async () => {
     await mongoose.connect(
       `mongodb+srv://${process.env.DATABASE}:${process.env.PASSWORD}@cluster0.wbb0p5v.mongodb.net/nodejs`
@@ -27,13 +28,13 @@ app.use('/api/', product)
 app.use('/api/', user)
 app.use('/api/', orderdetail)
 // Global error handler
-// app.use((err, req, res, next) => {
-//   if (err.name === 'UnauthorizedError') {
-//     res.status(err.status).send({ message: err.message })
-//     return
-//   }
-//   next()
-// })
+app.use((err, req, res, next) => {
+  if (err.name === 'UnauthorizedError') {
+    res.status(err.status).send({ message: err.message })
+    return
+  }
+  next()
+})
 app.listen(process.env.PORT, () => {
   console.log(`connected port ${process.env.PORT}`)
 })
