@@ -46,6 +46,7 @@ export const signin = async (req, res) => {
         message: 'mật khẩu bạn nhập không chính xác!',
       })
     }
+    console.log(user)
     const key = user.role == 1 ? process.env.KEYADMIN : process.env.KEYUSER
     const token = jwt.sign(
       { id: user.id, name: user.name, email: user.email, role: user.role },
