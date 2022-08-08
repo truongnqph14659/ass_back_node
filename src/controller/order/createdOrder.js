@@ -1,4 +1,5 @@
 import Order from "../../model/order";
+import Orderdetail from '../../model/orderdetail'
 
 export const CeatedOrder = async (req, res) => {
   try {
@@ -37,3 +38,19 @@ export const update = async (req, res) => {
       });
   }
 };
+
+export const read = async (req, res, next) => {
+  try{
+      const order = await Order.findOne({_id: req.params.id}).exec();
+      // const Orderdetail = await Orderdetail.find({order_id: order}).populate('order_id').select("-order_id").exec();
+       const Orderdetail = await Orderdetail.find({order_id: order})
+      res.json({
+          order,
+          Orderdetail
+      });   
+} catch  (error){
+  res.status(400).json({
+      error: 'Khong tim duoc danh muc'
+  })
+}
+}

@@ -13,11 +13,8 @@ const OrderdetailSchema = mongoose.Schema({
     },
     order_id:{
         type:ObjectId,
-        ref: 'orders'
+        ref: 'Order'
     },
-    addreess:{
-        type:String
-    }
 },{ timestamps: true })
 
 export default mongoose.model('Orderdetail',OrderdetailSchema)
