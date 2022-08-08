@@ -1,8 +1,8 @@
 import express from 'express'
-import orderdetail from '../model/orderdetail'
+import { CeatedOrderdetail } from '../controller/orderdetail/Orderdetail'
 
 const router = express.Router()
 
-router.post("/Orderdetail",orderdetail)
+router.post("/Orderdetail",CeatedOrderdetail)
 
 export default router
